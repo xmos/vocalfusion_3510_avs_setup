@@ -3,7 +3,7 @@ pushd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null
 SETUP_DIR="$( pwd )"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
-RPI_SETUP_TAG="v1.2.1"
+RPI_SETUP_TAG="v1.3.1"
 AVS_DEVICE_SDK_TAG="xmos_v1.6"
 AVS_SCRIPT="setup.sh"
 
@@ -37,17 +37,24 @@ else
 
 fi
 
+# Install necessary packages for dev kit
+sudo apt-get -y install libusb-1.0-0-dev libreadline-dev libncurses-dev audacity
+
 # Execute (rather than source) the setup scripts
 echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
-if $RPI_SETUP_DIR/setup.sh ; then
+if $RPI_SETUP_DIR/setup.sh xvf3510; then
 
   echo "Installing Amazon AVS SDK..."
   wget -O $AVS_SCRIPT https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
   chmod +x $AVS_SCRIPT
-  if ./$AVS_SCRIPT ; then
 
+  if ./$AVS_SCRIPT xvf3510; then
     echo "Type 'sudo reboot' below to reboot the Raspberry Pi and complete the AVS setup."
   fi
 fi
+
+# Overwrite avsrun alias to ensure I2S clk is always reinitialised
+sed -i '/avsrun=/d' /home/pi/.bash_aliases > /dev/null
+echo "alias avsrun=\"sudo $RPI_SETUP_DIR/resources/clk_dac_setup/setup_bclk > /dev/null; /home/pi/sdk-folder/sdk-build/SampleApp/src/SampleApp /home/pi/sdk-folder/sdk-build/Integration/AlexaClientSDKConfig.json /home/pi/sdk-folder/third-party/alexa-rpi/models\"" >> /home/pi/.bash_aliases
 
 popd > /dev/null
