@@ -3,7 +3,7 @@ pushd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null
 SETUP_DIR="$( pwd )"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
-RPI_SETUP_TAG="v1.3"
+RPI_SETUP_TAG="v1.3.1"
 AVS_DEVICE_SDK_TAG="xmos_v1.6"
 AVS_SCRIPT="setup.sh"
 
@@ -48,7 +48,7 @@ if $RPI_SETUP_DIR/setup.sh xvf3510; then
   wget -O $AVS_SCRIPT https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
   chmod +x $AVS_SCRIPT
 
-  if ./$AVS_SCRIPT xvf3510 ; then
+  if ./$AVS_SCRIPT xvf3510; then
     echo "Type 'sudo reboot' below to reboot the Raspberry Pi and complete the AVS setup."
   fi
 fi
