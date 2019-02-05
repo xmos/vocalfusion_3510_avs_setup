@@ -3,7 +3,7 @@ pushd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null
 SETUP_DIR="$( pwd )"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
-RPI_SETUP_TAG="v1.3.1"
+RPI_SETUP_TAG="v1.3.2"
 AVS_DEVICE_SDK_TAG="xmos_v1.6"
 AVS_SCRIPT="setup.sh"
 
@@ -38,7 +38,7 @@ else
 fi
 
 # Install necessary packages for dev kit
-sudo apt-get -y install libusb-1.0-0-dev libreadline-dev libncurses-dev audacity
+sudo apt-get -y install libusb-1.0-0-dev libreadline-dev libncurses-dev
 
 # Execute (rather than source) the setup scripts
 echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
