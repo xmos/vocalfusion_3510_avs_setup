@@ -43,6 +43,8 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
 4. Register Alexa with AVS by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
 
+   Ensure that the device origins and return fields are completed. From `My products` select `manage` and then `security profile`. Now add http://localhost:3000 to the `Allowed origins` and http://localhost:3000/authresponse to the `Allowed return URLs`. 
+   
    Note: The *Allowed Origins* and *Allowed Return URLs* should be entered as **http**, not **https**.
 
    Note: It can be easier to configure your new Alexa device and Amazon developer account from a browser on your Raspberry Pi, as you can then easily copy the *ProductID*, *ClientID* and *ClientSecret* keys.
@@ -53,7 +55,7 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
 7. Read and accept the Sensory license agreement. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK. It takes around 30 minutes to complete.
 
-8. As a final step, the script will open http://localhost:3000 in a browser on the Raspberry Pi. Enter your Amazon Developer credentials and close the browser window when prompted. (You won't have to do this if you already have a valid configuration file.) If you see a `400 Bad Request - HTTP` error it may be necessary to add http:// URLs to your device origins and return fields. To do this, go to your amazon developer AVS home page (https://developer.amazon.com/avs/home.html) and from `My products` select `manage` and then `security profile`. Now add http://localhost:3000 to the `Allowed origins` and http://localhost:3000/authresponse to the `Allowed return URLs`. Now refresh the browser window with the original error.
+8. As a final step, the script will open http://localhost:3000 in a browser on the Raspberry Pi. Enter your Amazon Developer credentials and close the browser window when prompted. (You won't have to do this if you already have a valid configuration file.) If you see a `400 Bad Request - HTTP` error. Go back to 4 above and check the `Allowed origins` and the `Allowed return URLs` have been correctly set and saved. Now refresh the browser window with the 404 error.
 
 9. Enter `sudo reboot` to reboot the Raspberry Pi and complete the installation.
 
