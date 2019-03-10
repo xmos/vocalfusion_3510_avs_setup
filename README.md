@@ -55,7 +55,7 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    ```./auto_install.sh```
 
-Read and accept the AVS Device SDK license agreement.
+   Read and accept the AVS Device SDK license agreement.
 
 6. You will be prompted enter your Alexa device details and asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option. Your Alexa device details are the *ProductID*, the *ClientID* and *ClientSecret* keys as generated in the previous step. You will also be prompted to enter a serial number and define your location.
 
