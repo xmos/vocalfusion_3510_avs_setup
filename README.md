@@ -49,7 +49,13 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    Note: It can be easier to configure your new Alexa device and Amazon developer account from a browser on your Raspberry Pi, as you can then easily copy the *ProductID*, *ClientID* and *ClientSecret* keys.
 
-5. Run the installation script by entering `./auto_install.sh`. Read and accept the AVS Device SDK license agreement.
+5. Run the installation script by entering:
+
+   ``` cd vocalfusion_3510_avs_setup```
+
+   ```./auto_install.sh```
+
+   Read and accept the AVS Device SDK license agreement.
 
 6. You will be prompted enter your Alexa device details and asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option. Your Alexa device details are the *ProductID*, the *ClientID* and *ClientSecret* keys as generated in the previous step. You will also be prompted to enter a serial number and define your location.
 
