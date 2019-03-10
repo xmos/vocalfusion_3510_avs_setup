@@ -51,9 +51,9 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
 5. Run the installation script by entering:
 
-  ``` cd vocalfusion_3510_avs_setup```
+   ``` cd vocalfusion_3510_avs_setup```
 
-  ```./auto_install.sh```
+   ```./auto_install.sh```
 
 Read and accept the AVS Device SDK license agreement.
 
