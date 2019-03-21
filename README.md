@@ -67,6 +67,9 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
 10. If you selected the option to run the Sample App on boot you should now be able to execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
 
+In some cases it has been observed that the Raspberry Pi does not configure the audio DAC properly until it has been rebooted twice. If the AVS SDK sample app appears to run, but no audio response can be heard, try rebooting the Raspberry Pi again to clear the issue.
+
+
 ## Running the AVS SDK Sample App
 The automated installation script creates a number of aliases which can be used to execute the AVS Device SDK client, or run the unit tests:
 - `avsrun` to run the Sample App.
