@@ -65,6 +65,8 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
 9. Enter `sudo reboot` to reboot the Raspberry Pi and complete the installation.
 
+ **IMPORTANT:** An unresolved setup issue means that the **Raspberry Pi should be rebooted twice** after installation before the system will respond.
+
 10. If you selected the option to run the Sample App on boot you should now be able to execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
 
 ## Running the AVS SDK Sample App
