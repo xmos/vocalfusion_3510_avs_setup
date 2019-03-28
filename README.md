@@ -32,7 +32,7 @@ Once the hardware setup is done follow the steps below to setup the Raspberry Pi
 
 2. Put the SD card in the SD card slot on the Pi and boot the Pi. Once the Pi boots, on the desktop, there's an option to install Raspbian. Check the RaspbianFull[Recommended] option and click install.
 
-3. Once Raspbian is installed, reboot the Pi. Once booted, there's a menu on the desktop prompting the user to setup wifi, keyboard setting etc. Complete all setup related steps and update the software when prompted to do so. Reboot the Pi again.
+3. Once Raspbian is installed, reboot the Pi. Once booted, there's a menu on the desktop prompting the user to setup wifi, keyboard settings etc. Complete all setup related steps and update the software when prompted to do so. Reboot the Pi again.
 
 4. Ensure running kernel version matches headers kernel headers package. A typical system requires the following `--reinstall` command:
 
@@ -46,11 +46,11 @@ Once the hardware setup is done follow the steps below to setup the Raspberry Pi
 
 6. Register Alexa with AVS by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
 
-   Ensure that the device origins and return fields are completed. From `My products` select `manage` and then `security profile`. Now add http://localhost:3000 to the `Allowed origins` and http://localhost:3000/authresponse to the `Allowed return URLs`. 
+   Ensure that the device origins and return fields are completed. Log into your developer account at https://developer.amazon.com. Click on `Developer Console` on the top right. Then click on `Alexa` from the options on the top, and then from the drop down menu select `Alexa Voice Service`. On the Alexa Voice Serivce page, click on `Products` and from the resulting page select your product. Once on the product page, select `Security Profile`. Now add http://localhost:3000 to the `Allowed origins` and http://localhost:3000/authresponse to the `Allowed return URLs`. 
    
    Note: The *Allowed Origins* and *Allowed Return URLs* should be entered as **http**, not **https**.
 
-   Note: It can be easier to configure your new Alexa device and Amazon developer account from a browser on your Raspberry Pi, as you can then easily copy the *ProductID*, *ClientID* and *ClientSecret* keys.
+   Note: It can be easier to configure your new Alexa device and Amazon developer account from a browser on your Raspberry Pi, as you can then easily copy the *ProductID*, *ClientID* and *ClientSecret* keys when you're asked to do so as part of the installation.
 
 7. Run the installation script by entering:
 
@@ -60,7 +60,7 @@ Once the hardware setup is done follow the steps below to setup the Raspberry Pi
 
    Read and accept the AVS Device SDK license agreement.
 
-8. You will be prompted enter your Alexa device details and asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option. Your Alexa device details are the *ProductID*, the *ClientID* and *ClientSecret* keys as generated in the previous step. You will also be prompted to enter a serial number and define your location.
+8. You will be prompted enter your Alexa device details and asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option. Your Alexa device details are the *ProductID*, the *ClientID* and *ClientSecret* keys as seen on the `Security Profile` for your product as described in step 6. You will also be prompted to enter a serial number and define your location.
 
 9. Read and accept the Sensory license agreement. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK. It takes around 30 minutes to complete.
 
