@@ -23,7 +23,7 @@ You will need:
 You will also need an Amazon Developer account: https://developer.amazon.com
 
 ## Hardware setup
-Setup your hardware by following the Hardware Setup guide present in .....
+Connect the RaspberryPi to XVF3510 kit by following the instructions in the [hardware setup guide](./xvf3510_rpi_hardware_setup.pdf)
 
 ## AVS SDK installation and Raspberry Pi audio setup
 Once the hardware setup is done follow the steps below to setup the Raspberry Pi for running AVS.
