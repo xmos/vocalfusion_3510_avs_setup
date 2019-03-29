@@ -46,7 +46,7 @@ Once the hardware setup is done follow the steps below to setup the Raspberry Pi
 
 6. Register Alexa with AVS by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
 
-   Ensure that the device origins and return fields are completed. Log into your developer account at https://developer.amazon.com. Click on `Developer Console` on the top right. Then click on `Alexa` from the options on the top, and then from the drop down menu select `Alexa Voice Service`. On the Alexa Voice Serivce page, click on `Products` and from the resulting page select your product. Once on the product page, select `Security Profile`. Now add http://localhost:3000 to the `Allowed origins` and http://localhost:3000/authresponse to the `Allowed return URLs`. 
+   Ensure that the device origins and return fields are completed. To do so, log into your developer account at https://developer.amazon.com. Click on `Developer Console` on the top right. Then click on `Alexa` from the options on the top, and then from the drop down menu select `Alexa Voice Service`. On the Alexa Voice Serivce page, click on `Products` and then select your product. Once on the product page, select `Security Profile`. Now add http://localhost:3000 to the `Allowed origins` and http://localhost:3000/authresponse to the `Allowed return URLs`. 
    
    Note: The *Allowed Origins* and *Allowed Return URLs* should be entered as **http**, not **https**.
 
