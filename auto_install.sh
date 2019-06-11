@@ -16,7 +16,7 @@ if verlte `uname -r` 4.17; then
 else
    echo "Unsupported kernel version: $(uname -r) > 4.17 "
    echo "To continue, downgrade your kernel using: sudo rpi-update a08ece3d48c3c40bf1b501772af9933249c11c5b"
-   echo "Then run: sudo tar -xvf $(realpath .)/raspberrypi-kernel-headers-a08ec.tar.gz -C /"
+   echo "Then run: sudo tar -xf $(realpath .)/raspberrypi-kernel-headers-a08ec.tar.gz -C /"
    echo "Then reboot your system and execute this installer again."
    exit
 fi
