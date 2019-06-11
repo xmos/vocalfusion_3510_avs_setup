@@ -18,9 +18,8 @@ else
    echo "To continue, downgrade your kernel using: sudo rpi-update a08ece3d48c3c40bf1b501772af9933249c11c5b"
    echo "Then run: sudo tar -xvf $(realpath .)/raspberrypi-kernel-headers-a08ec.tar.gz -C /"
    echo "Then reboot your system and execute this installer again."
+   exit
 fi
-exit
-
 
 # Amazon have changed the SDK directory structure. Prior versions will need to delete the directory before updating.
 SDK_DIR=$HOME/sdk-folder
