@@ -7,6 +7,21 @@ RPI_SETUP_TAG="v1.3.2"
 AVS_DEVICE_SDK_TAG="xmos_v1.6"
 AVS_SCRIPT="setup.sh"
 
+verlte() {
+    [ "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+}
+
+if verlte `uname -r` 4.17; then
+   echo "Kernel version suppported."
+else
+   echo "Unsupported kernel version: $(uname -r) > 4.17 "
+   echo "To continue, downgrade your kernel using: sudo rpi-update a08ece3d48c3c40bf1b501772af9933249c11c5b"
+   echo "Then run: sudo tar -xvf $(realpath .)/raspberrypi-kernel-headers-a08ec.tar.gz -C /"
+   echo "Then reboot your system and execute this installer again."
+fi
+exit
+
+
 # Amazon have changed the SDK directory structure. Prior versions will need to delete the directory before updating.
 SDK_DIR=$HOME/sdk-folder
 if [ -d $SDK_DIR ]; then
