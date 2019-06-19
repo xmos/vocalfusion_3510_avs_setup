@@ -4,25 +4,28 @@ SETUP_DIR="$( pwd )"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
 RPI_SETUP_TAG="v1.3.2"
-AVS_DEVICE_SDK_TAG="xmos_v1.6"
+AVS_DEVICE_SDK_TAG="feature/test_v1.13"
 AVS_SCRIPT="setup.sh"
 
 # Amazon have changed the SDK directory structure. Prior versions will need to delete the directory before updating.
 SDK_DIR=$HOME/sdk-folder
 if [ -d $SDK_DIR ]; then
-  if [ -d $SDK_DIR/avs-device-sdk ] && [ $(git -C $SDK_DIR/avs-device-sdk rev-parse --abbrev-ref HEAD) = $AVS_DEVICE_SDK_TAG ]; then
+  echo "Delete $SDK_DIR directory"
+  rm -rf $SDK_DIR
+  #if [ -d $SDK_DIR/avs-device-sdk ] && [ $(git -C $SDK_DIR/avs-device-sdk rev-parse --abbrev-ref HEAD) = $AVS_DEVICE_SDK_TAG ]; then
     # SDK build folder is aligned with latest Amazon changes
     :
-  else
-    echo "Error: $SDK_DIR is out of date. Please delete directory and then rerun."
-    echo "Exiting install script."
-    popd > /dev/null
-    return
-  fi
+  #else
+  #  echo "Error: $SDK_DIR is out of date. Please delete directory and then rerun."
+  #  echo "Exiting install script."
+  #  popd > /dev/null
+  #  return
+  #fi
 fi
 
+mkdir $SDK_DIR
 if [ ! -d $RPI_SETUP_DIR ]; then
-  git clone -b $RPI_SETUP_TAG git://github.com/xmos/vocalfusion-rpi-setup.git
+  git clone git://github.com/lucianomartin/vocalfusion-rpi-setup.git
 else
   if ! git -C $RPI_SETUP_DIR diff-index --quiet HEAD -- ; then
     echo "Changes found in $RPI_SETUP_DIR. Please revert changes, or delete directory, and then rerun."
@@ -33,7 +36,7 @@ else
 
   echo "Updating VocalFusion Raspberry Pi Setup"
   git -C $RPI_SETUP_DIR fetch > /dev/null
-  git -C $RPI_SETUP_DIR checkout $RPI_SETUP_TAG > /dev/null
+  git -C $RPI_SETUP_DIR checkout master > /dev/null
 
 fi
 
@@ -45,7 +48,9 @@ echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
 if $RPI_SETUP_DIR/setup.sh xvf3510; then
 
   echo "Installing Amazon AVS SDK..."
-  wget -O $AVS_SCRIPT https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
+  wget -O $AVS_SCRIPT https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
+  wget -O pi.sh https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/pi.sh
+  wget -O genConfig.sh https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
   chmod +x $AVS_SCRIPT
 
   if ./$AVS_SCRIPT xvf3510; then
