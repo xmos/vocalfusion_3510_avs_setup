@@ -7,38 +7,66 @@ RPI_SETUP_TAG="v1.3.2"
 AVS_DEVICE_SDK_TAG="feature/test_v1.13"
 AVS_SCRIPT="setup.sh"
 
+# Default value for XMOS device
+XVF_DEVICE="xvf3510"
+
+# Default device serial number if nothing is specified
+DEVICE_SERIAL_NUMBER="123456"
+
+show_help() {
+  echo  'Usage: auto_install.sh <config-json-file> [OPTIONS]'
+  echo  'The <config-json-file> can be downloaded from developer portal and must contain the following:'
+  echo  '   "clientId": "<OAuth client ID>"'
+  echo  '   "productId": "<your product name for device>"'
+  echo  ''
+  echo  'Optional parameters'
+  echo  '  -s <serial-number>  If nothing is provided, the default device serial number is 123456'
+  echo  '  -x                  XMOS device to setup: default xvf3510, possible value xvf3500'
+  echo  '  -h                  Display this help and exit'
+}
+
+if [[ $# -lt 1 ]]; then
+    show_help
+    exit 1
+fi
+
+CONFIG_JSON_FILE=$1
+if [ ! -f "$CONFIG_JSON_FILE" ]; then
+    echo "Config json file not found!"
+    show_help
+    exit 1
+fi
+shift 1
+
+OPTIONS=s:x:h
+while getopts "$OPTIONS" opt ; do
+    case $opt in
+        s )
+            DEVICE_SERIAL_NUMBER="$OPTARG"
+            ;;
+        x )
+            XVF_DEVICE="$OPTARGS"
+            ;;
+        h )
+            show_help
+            exit 1
+            ;;
+    esac
+done
+
 # Amazon have changed the SDK directory structure. Prior versions will need to delete the directory before updating.
 SDK_DIR=$HOME/sdk-folder
 if [ -d $SDK_DIR ]; then
   echo "Delete $SDK_DIR directory"
   rm -rf $SDK_DIR
-  #if [ -d $SDK_DIR/avs-device-sdk ] && [ $(git -C $SDK_DIR/avs-device-sdk rev-parse --abbrev-ref HEAD) = $AVS_DEVICE_SDK_TAG ]; then
-    # SDK build folder is aligned with latest Amazon changes
-    :
-  #else
-  #  echo "Error: $SDK_DIR is out of date. Please delete directory and then rerun."
-  #  echo "Exiting install script."
-  #  popd > /dev/null
-  #  return
-  #fi
 fi
 
 mkdir $SDK_DIR
-if [ ! -d $RPI_SETUP_DIR ]; then
-  git clone git://github.com/lucianomartin/vocalfusion-rpi-setup.git
-else
-  if ! git -C $RPI_SETUP_DIR diff-index --quiet HEAD -- ; then
-    echo "Changes found in $RPI_SETUP_DIR. Please revert changes, or delete directory, and then rerun."
-    echo "Exiting install script."
-    popd > /dev/null
-    return
-  fi
 
-  echo "Updating VocalFusion Raspberry Pi Setup"
-  git -C $RPI_SETUP_DIR fetch > /dev/null
-  git -C $RPI_SETUP_DIR checkout master > /dev/null
-
+if [ -d $RPI_SETUP_DIR ]; then
+  rm -rf $RPI_SETUP_DIR
 fi
+git clone git://github.com/lucianomartin/vocalfusion-rpi-setup.git
 
 # Install necessary packages for dev kit
 sudo apt-get -y install libusb-1.0-0-dev libreadline-dev libncurses-dev
@@ -53,7 +81,7 @@ if $RPI_SETUP_DIR/setup.sh xvf3510; then
   wget -O genConfig.sh https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
   chmod +x $AVS_SCRIPT
 
-  if ./$AVS_SCRIPT xvf3510; then
+  if ./$AVS_SCRIPT $CONFIG_JSON_FILE -s $DEVICE_SERIAL_NUMBER -x $XVF_DEVICE; then
     echo "Type 'sudo reboot' below to reboot the Raspberry Pi and complete the AVS setup."
   fi
 fi
