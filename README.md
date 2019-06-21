@@ -37,15 +37,17 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    followed by a reboot.
 
-3. Clone the vocalfusion_3510_avs_setup repository:
+3. Close any other application such as browsers to avoid the Raspberry Pi to freeze.
+
+4. Clone the vocalfusion_3510_avs_setup repository:
 
    ```git clone https://github.com/xmos/vocalfusion_3510_avs_setup```
 
-4. Register Alexa with AVS and save a *config.json* file by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
+5. Register Alexa with AVS and save a *config.json* file by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
 
-5. Copy the *config.json* into the directory `vocalfusion_3510_avs_setup`
+6. Copy the *config.json* into the directory `vocalfusion_3510_avs_setup`
 
-6. Run the installation script by entering:
+7. Run the installation script by entering:
 
    ``` cd vocalfusion_3510_avs_setup```
 
@@ -53,17 +55,18 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    Read and accept the AVS Device SDK license agreement.
 
-6. You will be asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option.
+8. You will be asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option.
 
-7. Read and accept the Sensory license agreement. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK. It takes around 30 minutes to complete.
+9. Read and accept the Sensory license agreement. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK. It takes around 30 minutes to complete.
 
-8. Enter `sudo reboot` to reboot the Raspberry Pi and complete the installation.
+10. Enter `sudo reboot` to reboot the Raspberry Pi and complete the installation.
 
-9. If you selected the option to run the Sample App on boot you should now be able to complete the registration by following the steps from 2 onward here:
+11. If you selected the option to run the Sample App on boot you should now be able to complete the registration by following the steps from 2 onward here:
 https://github.com/alexa/avs-device-sdk/wiki/Raspberry-Pi-Quick-Start-Guide-with-Script#finish-authorization-using-login-with-amazon
-This step is only needed once
 
-10. Now you can execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
+This step is only needed once.
+
+12. Now you can execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
 
 ## Running the AVS SDK Sample App
 The automated installation script creates a number of aliases which can be used to execute the AVS Device SDK client, or run the unit tests:
