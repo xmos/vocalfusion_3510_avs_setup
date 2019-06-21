@@ -68,9 +68,6 @@ if [ -d $RPI_SETUP_DIR ]; then
 fi
 git clone git://github.com/lucianomartin/vocalfusion-rpi-setup.git
 
-# Install necessary packages for dev kit
-sudo apt-get -y install libusb-1.0-0-dev libreadline-dev libncurses-dev
-
 # Execute (rather than source) the setup scripts
 echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
 if $RPI_SETUP_DIR/setup.sh xvf3510; then
