@@ -8,7 +8,7 @@ AVS_DEVICE_SDK_TAG="feature/test_v1.13"
 AVS_SCRIPT="setup.sh"
 
 # Default value for XMOS device
-XVF_DEVICE="xvf3510"
+XMOS_DEVICE="xvf3510"
 
 # Default device serial number if nothing is specified
 DEVICE_SERIAL_NUMBER="123456"
@@ -21,7 +21,7 @@ show_help() {
   echo  ''
   echo  'Optional parameters'
   echo  '  -s <serial-number>  If nothing is provided, the default device serial number is 123456'
-  echo  '  -x                  XMOS device to setup: default xvf3510, possible value xvf3500'
+  echo  '  -d <device-type>    XMOS device to setup: default xvf3510, possible value xvf3500'
   echo  '  -h                  Display this help and exit'
 }
 
@@ -45,7 +45,7 @@ while getopts "$OPTIONS" opt ; do
             DEVICE_SERIAL_NUMBER="$OPTARG"
             ;;
         x )
-            XVF_DEVICE="$OPTARGS"
+            XMOS_DEVICE="$OPTARGS"
             ;;
         h )
             show_help
@@ -78,7 +78,7 @@ if $RPI_SETUP_DIR/setup.sh xvf3510; then
   wget -O genConfig.sh https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
   chmod +x $AVS_SCRIPT
 
-  if ./$AVS_SCRIPT $CONFIG_JSON_FILE -s $DEVICE_SERIAL_NUMBER -x $XVF_DEVICE; then
+  if ./$AVS_SCRIPT $CONFIG_JSON_FILE $AVS_DEVICE_SDK_TAG -s $DEVICE_SERIAL_NUMBER -d $XMOS_DEVICE; then
     echo "Type 'sudo reboot' below to reboot the Raspberry Pi and complete the AVS setup."
   fi
 fi

@@ -68,7 +68,7 @@ This step is only needed once
 ## Running the AVS SDK Sample App
 The automated installation script creates a number of aliases which can be used to execute the AVS Device SDK client, or run the unit tests:
 - `avsrun` to run the Sample App.
-- `avsunit` to run the unit tests (invoke Amazon's `avs_test.sh`).
+- `avsunit` to run the unit tests (invoke Amazon's `test.sh`).
 - `avssetup` to re-install the Sample App (re-run XMOS modified `setup.sh`).
 
 ## Using different Amazon details
