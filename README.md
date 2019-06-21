@@ -64,8 +64,6 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 11. If you selected the option to run the Sample App on boot you should now be able to complete the registration by following the steps from 2 onward here:
 https://github.com/alexa/avs-device-sdk/wiki/Raspberry-Pi-Quick-Start-Guide-with-Script#finish-authorization-using-login-with-amazon
 
-This step is only needed once.
-
 12. Now you can execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
 
 ## Running the AVS SDK Sample App
