@@ -54,6 +54,13 @@ while getopts "$OPTIONS" opt ; do
     esac
 done
 
+# Exit if chromium browser is open
+if pgrep chromium > /dev/null ; then
+  echo "Error: Chromium browser is open"
+  echo "Please close the browser and restart the installation procedure"
+  exit 2
+fi
+
 # Amazon have changed the SDK directory structure. Prior versions will need to delete the directory before updating.
 SDK_DIR=$HOME/sdk-folder
 if [ -d $SDK_DIR ]; then
