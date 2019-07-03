@@ -3,7 +3,7 @@ pushd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null
 SETUP_DIR="$( pwd )"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
-RPI_SETUP_TAG="v1.3.2"
+RPI_SETUP_TAG="feature/use_hw_i2c"
 AVS_DEVICE_SDK_TAG="feature/test_v1.13"
 AVS_SCRIPT="setup.sh"
 
@@ -73,7 +73,7 @@ mkdir $SDK_DIR
 if [ -d $RPI_SETUP_DIR ]; then
   rm -rf $RPI_SETUP_DIR
 fi
-git clone git://github.com/lucianomartin/vocalfusion-rpi-setup.git
+git clone -b RPI_SETUP_TAG git://github.com/lucianomartin/vocalfusion-rpi-setup.git
 
 # Execute (rather than source) the setup scripts
 echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
