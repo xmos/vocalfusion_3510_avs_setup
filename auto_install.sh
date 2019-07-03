@@ -73,7 +73,7 @@ mkdir $SDK_DIR
 if [ -d $RPI_SETUP_DIR ]; then
   rm -rf $RPI_SETUP_DIR
 fi
-git clone -b RPI_SETUP_TAG git://github.com/lucianomartin/vocalfusion-rpi-setup.git
+git clone -b $RPI_SETUP_TAG git://github.com/lucianomartin/vocalfusion-rpi-setup.git
 
 # Execute (rather than source) the setup scripts
 echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
