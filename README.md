@@ -37,11 +37,11 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    followed by a reboot.
 
-3. Close any other application such as browsers to avoid the Raspberry Pi to freeze.
-
-4. Clone the vocalfusion_3510_avs_setup repository:
+3. Clone the vocalfusion_3510_avs_setup repository:
 
    ```git clone https://github.com/xmos/vocalfusion_3510_avs_setup```
+
+4. Close any other application such as browsers to avoid the Raspberry Pi to freeze during the AVS SDK installation.
 
 5. Register Alexa with AVS and save a *config.json* file by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
 

@@ -16,7 +16,7 @@ DEVICE_SERIAL_NUMBER="123456"
 show_help() {
   echo  'Usage: auto_install.sh <config-json-file> [OPTIONS]'
   echo  'The <config-json-file> can be downloaded from developer portal and must contain the following:'
-  echo  '   "clientId": "<OAuth client ID>"'
+  echo  '   "clientId": "<Auth client ID>"'
   echo  '   "productId": "<your product name for device>"'
   echo  ''
   echo  'Optional parameters'
