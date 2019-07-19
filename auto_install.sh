@@ -3,9 +3,8 @@ pushd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null
 SETUP_DIR="$( pwd )"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
-RPI_SETUP_TAG="feature/use_hw_i2c"
-AVS_DEVICE_SDK_TAG="feature/test_v1.13"
-AVS_SCRIPT="setup.sh"
+RPI_SETUP_TAG="v2.0.0"
+AVS_DEVICE_SDK_TAG="v1.13"
 
 # Default value for XMOS device
 XMOS_DEVICE="xvf3510"
@@ -73,16 +72,16 @@ mkdir $SDK_DIR
 if [ -d $RPI_SETUP_DIR ]; then
   rm -rf $RPI_SETUP_DIR
 fi
-git clone -b $RPI_SETUP_TAG git://github.com/lucianomartin/vocalfusion-rpi-setup.git
+git clone -b $RPI_SETUP_TAG git://github.com/xmos/vocalfusion-rpi-setup.git
 
 # Execute (rather than source) the setup scripts
 echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
 if $RPI_SETUP_DIR/setup.sh xvf3510; then
 
   echo "Installing Amazon AVS SDK..."
-  wget -O $AVS_SCRIPT https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
-  wget -O pi.sh https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/pi.sh
-  wget -O genConfig.sh https://raw.githubusercontent.com/lucianomartin/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
+  wget -O setup.sh https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
+  wget -O pi.sh https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/pi.sh
+  wget -O genConfig.sh https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
   chmod +x $AVS_SCRIPT
 
   if ./$AVS_SCRIPT $CONFIG_JSON_FILE $AVS_DEVICE_SDK_TAG -s $DEVICE_SERIAL_NUMBER -d $XMOS_DEVICE; then
