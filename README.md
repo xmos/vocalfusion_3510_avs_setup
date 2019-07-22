@@ -41,37 +41,35 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    ```git clone https://github.com/xmos/vocalfusion_3510_avs_setup```
 
-4. Register Alexa with AVS by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
+4. Close any other application such as browsers to avoid the Raspberry Pi to freeze during the AVS SDK installation.
 
-   Ensure that the device origins and return fields are completed. From `My products` select `manage` and then `security profile`. Now add http://localhost:3000 to the `Allowed origins` and http://localhost:3000/authresponse to the `Allowed return URLs`. 
-   
-   Note: The *Allowed Origins* and *Allowed Return URLs* should be entered as **http**, not **https**.
+5. Register Alexa with AVS and save a *config.json* file by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
 
-   Note: It can be easier to configure your new Alexa device and Amazon developer account from a browser on your Raspberry Pi, as you can then easily copy the *ProductID*, *ClientID* and *ClientSecret* keys.
+6. Copy the *config.json* into the directory `vocalfusion_3510_avs_setup`
 
-5. Run the installation script by entering:
+7. Run the installation script by entering:
 
    ``` cd vocalfusion_3510_avs_setup```
 
-   ```./auto_install.sh```
+   ```./auto_install.sh config.json```
 
    Read and accept the AVS Device SDK license agreement.
 
-6. You will be prompted enter your Alexa device details and asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option. Your Alexa device details are the *ProductID*, the *ClientID* and *ClientSecret* keys as generated in the previous step. You will also be prompted to enter a serial number and define your location.
+8. You will be asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option.
 
-7. Read and accept the Sensory license agreement. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK. It takes around 30 minutes to complete.
+9. Read and accept the Sensory license agreement. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK. It takes around 30 minutes to complete.
 
-8. As a final step, the script will open http://localhost:3000 in a browser on the Raspberry Pi. Enter your Amazon Developer credentials and close the browser window when prompted. (You won't have to do this if you already have a valid configuration file.) If you see a `400 Bad Request - HTTP` error. Go back to 4 above and check the `Allowed origins` and the `Allowed return URLs` have been correctly set and saved. Now refresh the browser window with the 404 error.
+10. Enter `sudo reboot` to reboot the Raspberry Pi and complete the installation.
 
-9. Enter `sudo reboot` to reboot the Raspberry Pi and complete the installation.
+11. If you selected the option to run the Sample App on boot you should now be able to complete the registration by following the steps from 2 onward here:
+https://github.com/alexa/avs-device-sdk/wiki/Raspberry-Pi-Quick-Start-Guide-with-Script#finish-authorization-using-login-with-amazon
 
-10. If you selected the option to run the Sample App on boot you should now be able to execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
+12. Now you can execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
 
 ## Running the AVS SDK Sample App
 The automated installation script creates a number of aliases which can be used to execute the AVS Device SDK client, or run the unit tests:
 - `avsrun` to run the Sample App.
-- `avsauth` to re-authenticate your Alexa device details (invoke Amazon's `avs_auth.sh`).
-- `avsunit` to run the unit tests (invoke Amazon's `avs_test.sh`).
+- `avsunit` to run the unit tests (invoke Amazon's `test.sh`).
 - `avssetup` to re-install the Sample App (re-run XMOS modified `setup.sh`).
 
 ## Using different Amazon details
