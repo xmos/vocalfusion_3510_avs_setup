@@ -31,6 +31,10 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
 1. Install Raspbian (Stretch) on the Raspberry Pi.
 
+   Recommended version of NOOBS is available here: http://downloads.raspberrypi.org/NOOBS/images/NOOBS-2018-11-15/
+   
+   Upon first boot, follow the instructions to set your locale settings and connect to a WiFi network but **SKIP THE UPDATE STEP**.
+
 2. Ensure running kernel version matches headers kernel headers package. A typical system requires the following `--reinstall` command:
 
    ```sudo apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel```
@@ -51,7 +55,7 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    ``` cd vocalfusion_3510_avs_setup```
 
-   ```./auto_install.sh config.json```
+   ```./auto_install.sh```
 
    Read and accept the AVS Device SDK license agreement.
 
