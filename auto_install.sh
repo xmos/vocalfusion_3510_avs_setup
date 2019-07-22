@@ -36,6 +36,9 @@ if [ ! -f "$CONFIG_JSON_FILE" ]; then
     show_help
     exit 1
 fi
+if [ ! -f config.json ]; then
+    cp "$CONFIG_JSON_FILE" config.json
+fi
 shift 1
 
 OPTIONS=s:x:h
