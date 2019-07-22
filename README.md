@@ -29,7 +29,7 @@ Setup your hardware by following the **Hardware Setup**.
 ## AVS SDK installation and Raspberry Pi audio setup
 The **Getting Started Guide** details setup steps up until this point. What follows are setup steps specific to the AVS SDK.
 
-1. Install Raspbian (Stretch) on the Raspberry Pi.
+1. Install Raspbian (Stretch) on the Raspberry Pi. Recommended version of NOOBS is available here: http://downloads.raspberrypi.org/NOOBS/images/NOOBS-2018-11-15/
 
 2. Ensure running kernel version matches headers kernel headers package. A typical system requires the following `--reinstall` command:
 
