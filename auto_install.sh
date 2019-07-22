@@ -14,8 +14,9 @@ XMOS_DEVICE="xvf3510"
 DEVICE_SERIAL_NUMBER="123456"
 
 show_help() {
-  echo  'Usage: auto_install.sh <config-json-file> [OPTIONS]'
-  echo  'The <config-json-file> can be downloaded from developer portal and must contain the following:'
+  echo  'Usage: auto_install.sh [OPTIONS]'
+  echo  'A config.json file must be present in the current working directory.'
+  echo  'The config.json can be downloaded from developer portal and must contain the following:'
   echo  '   "clientId": "<Auth client ID>"'
   echo  '   "productId": "<your product name for device>"'
   echo  ''
@@ -30,14 +31,11 @@ if [[ $# -lt 1 ]]; then
     exit 1
 fi
 
-CONFIG_JSON_FILE=$1
+CONFIG_JSON_FILE="config.json"
 if [ ! -f "$CONFIG_JSON_FILE" ]; then
     echo "Config json file not found!"
     show_help
     exit 1
-fi
-if [ ! -f config.json ]; then
-    cp "$CONFIG_JSON_FILE" config.json
 fi
 shift 1
 
