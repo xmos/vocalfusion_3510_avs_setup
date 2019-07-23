@@ -33,7 +33,7 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    Recommended version of NOOBS is available here: http://downloads.raspberrypi.org/NOOBS/images/NOOBS-2018-10-11/NOOBS_v2_9_0.zip
    
-   IMPORTANT: To prevent inadvertent possibly incompatible updates, ensure that there are no network cables connected to the Pi. 
+   IMPORTANT: To prevent inadvertent (and possibly incompatible) updates, ensure that there are no network cables connected to the Pi. 
    
    On first boot, follow the instructions to set your locale settings and connect to a WiFi network but **SKIP THE UPDATE STEP**.
 
