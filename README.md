@@ -16,7 +16,7 @@ You will need:
 - Raspberry Pi 3
 - Micro-USB power supply (min. 2A)
 - MicroSD card (min. 16GB)
-- Powered mono speaker with audio 3.5mm analogue plug
+- Powered stereo speakers with audio 3.5mm analogue plug
 - Monitor with HDMI input
 - HDMI cable
 - Fast-Ethernet connection with internet connectivity
