@@ -27,7 +27,7 @@ def led_function():
         while spi_boot_in_progress:
             subprocess.call(["./pi_hat_ctrl", "SET_LED_RGB", "22", "1", "1"])
         subprocess.call(["./pi_hat_ctrl", "SET_LED_RGB", "19", "23", "3"])
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:#possibly not needed
         pass
     return
 
@@ -43,6 +43,7 @@ def do_spiboot():
         spiboot_process.kill()
         time.sleep(2)
         silence_process.kill()
+        #instead of returning error raise KeyboardInterrupt
         return -1
     return 0
 
@@ -73,6 +74,7 @@ def run_avs():
             if b'2c' in i2c_detect:
                 #if this is the first time we've seen the device after spiboot
                 if spi_boot_in_progress == True:
+                    #wait 2 seconds here
                     spi_boot_in_progress = False
                     time.sleep(2)
                     led.join() #wait for led thread to exit
@@ -83,7 +85,7 @@ def run_avs():
                 if spi_boot_in_progress == False:
                     spi_boot_in_progress = True
                     led = threading.Thread(target=led_function)
-                    avs.kill()
+                    avs.kill() #set avs to None
                     led.start()
                 
                 ret = do_spiboot()
@@ -97,12 +99,13 @@ def run_avs():
         try:
             spi_boot_in_progress = False #this will make led process exit
             time.sleep(1)
-            subprocess.call(['killall', 'SampleApp'])
+            subprocess.call(['killall', 'SampleApp']) #kill avs process
         except:
             pass
         
 
 
 if __name__ == "__main__":
+    #just call run_avs function
     p = Process(target=run_avs)
     p.start()
