@@ -82,7 +82,7 @@ The automated installation script creates a number of aliases which can be used 
 - `avssetup` to re-install the Sample App (re-run XMOS modified `setup.sh`).
 
 ## Using different Amazon details
-To change client and product ID, run `avssetup`. It will ask you to type in your IDs and invoke `avsauth` for you. As a result the SDK JSON file will be updated so subsequent `avsrun` can use the new details.
+To change client and product ID, download your updated config.json and in the same folder run `avssetup config.json rebuild`. Subsequent `avsrun` calls will use the new details.
 
 ## Changing Sensory operating point
 
