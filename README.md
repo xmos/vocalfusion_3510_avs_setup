@@ -83,3 +83,19 @@ The automated installation script creates a number of aliases which can be used 
 
 ## Using different Amazon details
 To change client and product ID, run `avssetup`. It will ask you to type in your IDs and invoke `avsauth` for you. As a result the SDK JSON file will be updated so subsequent `avsrun` can use the new details.
+
+## Changing Sensory operating point
+
+To change to operating point of the Sensory keyword engine, navigate to 
+```
+~/sdk-folder/avs-device-sdk/KWD/Sensory/src/
+```
+   
+Change line 61 in `SensoryKeywordDetector.cpp` to your desired value:
+
+```c++
+/// The Sensory operating point
+static const unsigned int SENSORY_OPERATING_POINT = 12;
+```
+
+In a terminal, navigate to `~/vocalfustion_3510_avs_setup` and run `avssetup config.json rebuild`. This will rebuild AVS using your config.json with the new operating point.
