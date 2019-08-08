@@ -83,3 +83,18 @@ The automated installation script creates a number of aliases which can be used 
 
 ## Using different Amazon details
 To change client and product ID, run `avssetup`. It will ask you to type in your IDs and invoke `avsauth` for you. As a result the SDK JSON file will be updated so subsequent `avsrun` can use the new details.
+
+## Changing Sensory operating point
+The Sensory operating point is set to 12 in the default avs build. To change the operating point and recompile, follow the following steps.
+
+1. On the Raspberry Pi, open the file /home/pi/sdk-folder/avs-device-sdk/KWD/Sensory/src/SensoryKeywordDetector.cpp
+
+2. Go to line 61 in the file. It should have the text, `static const unsigned int SENSORY_OPERATING_POINT = 12;`
+
+3. Replace 12 in the line above with the desired operating point value. Save and close the file.
+
+4. On a Raspberry Pi terminal type, `avssetup <path to config.json file> v1.14`
+
+5. Type 'agree' when aked to do so and respond "y" to the `Automatically run AVS SDK at startup` question.
+
+6. Once avssetup completes, type avsrun and scroll through the prints on the terminal. You should see `Sensory operating point = <new value you've set for the operating point>` printed on the terminal. AVS is now running with Sensory operating at the new operating point.
