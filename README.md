@@ -35,7 +35,7 @@ The **Getting Started Guide** details setup steps up until this point. What foll
    
    IMPORTANT: To prevent inadvertent (and possibly incompatible) updates, ensure that there are no network cables connected to the Pi. 
    
-   On first boot, follow the instructions to set your locale settings and connect to a WiFi network but **SKIP THE UPDATE STEP**.
+   On first boot, follow the instructions to set your locale settings, connect to a WiFi network and update the kernel.
 
 2. Ensure running kernel version matches headers kernel headers package. A typical system requires the following `--reinstall` command:
 
