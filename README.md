@@ -29,14 +29,15 @@ Setup your hardware by following the **Hardware Setup**.
 ## AVS SDK installation and Raspberry Pi audio setup
 The **Getting Started Guide** details setup steps up until this point. What follows are setup steps specific to the AVS SDK.
 
-1. Install Raspbian (Stretch) on the Raspberry Pi.
+1. Install Raspbian (Stretch) on the Raspberry Pi. NOOBS is an easy operating system installation manager for the Raspberry Pi.
 
    Recommended version of NOOBS is available here: http://downloads.raspberrypi.org/NOOBS/images/NOOBS-2018-10-11/NOOBS_v2_9_0.zip
+
+   A step-by-step procedure about how to use NOOBS can be found here: https://www.raspberrypi.org/documentation/installation/noobs.md
    
    IMPORTANT: To prevent inadvertent (and possibly incompatible) updates, ensure that there are no network cables connected to the Pi. 
    
-   On first boot, follow the instructions to set your locale settings, connect to a WiFi network and update the kernel.
-
+   Once the SD card is flashed with NOOBS, boot up the Raspberry Pi and follow the instructions to set your locale settings, connect to a WiFi network and and update the kernel.
 2. Ensure running kernel version matches headers kernel headers package. A typical system requires the following `--reinstall` command:
 
    ```
@@ -54,23 +55,25 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
 5. Register Alexa with AVS and save a *config.json* file by following https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile.
 
-6. Copy the *config.json* into the directory `vocalfusion_3510_avs_setup`
+6. Copy the *config.json* saved in the previous step into the directory `vocalfusion_3510_avs_setup` cloned in step 3.
 
-7. Run the installation script by entering:
+7. Run the installation script by entering in a terminal:
 
    ``` cd vocalfusion_3510_avs_setup```
 
    ```./auto_install.sh config.json```
 
-   Read and accept the AVS Device SDK license agreement.
+  The complete setup will require about 40 minutes. During this procedure the following actions are required:
 
-8. You will be asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option.
+   - Read and accept the AVS Device SDK license agreement.
 
-9. Read and accept the Sensory license agreement. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK. It takes around 30 minutes to complete.
+   - You will be asked whether you want the Sample App to run automatically when the Raspberry Pi boots. It is recommended that you respond "yes" to this option.
+
+   - Read and accept the Sensory license agreement: scroll down by using the ENTER button or the SPACE bar. Wait for the script to complete the installation. The script is configuring the Raspberry Pi audio system, downloading and updating dependencies, building and configuring the AVS Device SDK.
 
 10. Enter `sudo reboot` to reboot the Raspberry Pi and complete the installation.
 
-11. If you selected the option to run the Sample App on boot you should now be able to complete the registration by following the steps from 2 onward here:
+11. If you selected the option to run the Sample App on boot you should now be able to complete the registration by following the steps from 2 onward in the section here:
 https://github.com/alexa/avs-device-sdk/wiki/Raspberry-Pi-Quick-Start-Guide-with-Script#finish-authorization-using-login-with-amazon
 
 12. Now you can execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
