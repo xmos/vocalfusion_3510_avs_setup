@@ -93,14 +93,6 @@ fi
 
 # Overwrite avsrun alias to ensure I2S clk is always reinitialised
 sed -i '/avsrun=/d' /home/pi/.bash_aliases > /dev/null
-echo "alias avsrun=\"sudo $RPI_SETUP_DIR/resources/clk_dac_setup/setup_bclk > /dev/null; python /home/pi/vocalfusion_3510_avs_setup/spiboot/avsrun.py\"" >> /home/pi/.bash_aliases
-
-
-STARTUP_SCRIPT=$SETUP_DIR/.avsrun-startup.sh
-cat << EOF > "$STARTUP_SCRIPT"
-#!/bin/bash
-python /home/pi/vocalfusion_3510_avs_setup/spiboot/avsrun.py
-\$SHELL
-EOF
+echo "alias avsrun=\"sudo $RPI_SETUP_DIR/resources/clk_dac_setup/setup_bclk > /dev/null; /home/pi/sdk-folder/sdk-build/SampleApp/src/SampleApp /home/pi/sdk-folder/sdk-build/Integration/AlexaClientSDKConfig.json /home/pi/sdk-folder/third-party/alexa-rpi/models\"" >> /home/pi/.bash_aliases
 
 popd > /dev/null
