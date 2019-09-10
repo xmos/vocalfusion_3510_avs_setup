@@ -4,7 +4,7 @@ SETUP_DIR="$( pwd )"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
 RPI_SETUP_TAG="v2.1.0"
-AVS_DEVICE_SDK_TAG="v1.14"
+AVS_DEVICE_SDK_TAG="v1.13"
 AVS_SCRIPT="setup.sh"
 
 # Default value for XMOS device
