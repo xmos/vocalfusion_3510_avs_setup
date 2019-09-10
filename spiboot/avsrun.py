@@ -21,7 +21,8 @@ def parse_arguments():
 def led_function():
     global spi_boot_in_progress
     while spi_boot_in_progress:
-        subprocess.call(["./pi_hat_ctrl", "SET_LED_RGB", "22", "1", "1"])
+        #subprocess.call(["./pi_hat_ctrl", "SET_LED_RGB", "22", "1", "1"])
+        subprocess.call(["./pi_hat_ctrl", "SET_LED_RGB", "50", "20", "0"])
     subprocess.call(["./pi_hat_ctrl", "SET_LED_RGB", "19", "23", "3"])
     return
 
