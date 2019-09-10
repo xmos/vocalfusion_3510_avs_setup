@@ -7,9 +7,16 @@ import threading
 import signal
 import time
 import shutil
+import argparse
 
 package_dir = os.path.dirname(os.path.abspath(__file__))
 spi_boot_in_progress = True
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("sampleapp_args", nargs="*", type=str, default=[])
+    args = parser.parse_args()
+    return args
 
 def led_function():
     global spi_boot_in_progress
@@ -37,7 +44,7 @@ def do_spiboot():
         #instead of returning error raise KeyboardInterrupt
     return
 
-def run_avs():
+def run_avs(sampleapp_args):
     try:
         global spi_boot_in_progress
         avs = None
@@ -57,24 +64,18 @@ def run_avs():
             if b'2c' in i2c_detect:
                 #if this is the first time we've seen the device after spiboot
                 if spi_boot_in_progress == True:
-                    #Do a spiboot just in case there's i2s slave FW in flash and on powering the device back up, the FW in flash is running
-                    while True: #keep spi-booting till device appears on i2c since we want to be 100% sure the device is there before starting avs
-                        do_spiboot()
-                        time.sleep(2)
-                        #make sure that the device is seen on i2c
-                        i2c_detect = subprocess.check_output(['i2cdetect', '-y', '1', '0x2c', '0x2c'])
-                        if b'2c' in i2c_detect:
-                            break
-
                     spi_boot_in_progress = False
                     led.join() #wait for led thread to exit
                     #start avs
-                    avs = subprocess.Popen(["/home/pi/sdk-folder/sdk-build/SampleApp/src/SampleApp", "/home/pi/sdk-folder/sdk-build/Integration/AlexaClientSDKConfig.json", "/home/pi/sdk-folder/third-party/alexa-rpi/models"])
+                    sampleapp_list = ["/home/pi/sdk-folder/sdk-build/SampleApp/src/SampleApp", "/home/pi/sdk-folder/sdk-build/Integration/AlexaClientSDKConfig.json", "/home/pi/sdk-folder/third-party/alexa-rpi/models"]
+                    sampleapp_list.extend(sampleapp_args)
+                    avs = subprocess.Popen(sampleapp_list)
             else:
                 #if this is the first time we've seen the device not present, stop avs and start led thread
                 if spi_boot_in_progress == False:
                     spi_boot_in_progress = True
                     led = threading.Thread(target=led_function)
+                    
                     avs.kill() 
                     avs = None
                     led.start()
@@ -94,4 +95,5 @@ def run_avs():
 
 
 if __name__ == "__main__":
-    run_avs()
+    args = parse_arguments()
+    run_avs(args.sampleapp_args)

@@ -83,7 +83,6 @@ if os.path.exists(args.bin_filename) is False:
     print("Error: input file {} not found".format(args.bin_filename))
     exit(1)
 
-
 #setup GPIO
 GPIO.setmode(GPIO.BOARD)
 p_ready = 22 #pin 22 on the header GPIO.setmode(GPIO.BOARD)
