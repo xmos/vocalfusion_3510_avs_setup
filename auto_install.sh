@@ -12,7 +12,8 @@ OUTPUT_CONFIG_FILE="$BUILD_PATH/Integration/AlexaClientSDKConfig.json"
 RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
 
 RPI_SETUP_TAG="v2.1.0"
-AVS_DEVICE_SDK_TAG="xmos_v1.13"
+#AVS_DEVICE_SDK_TAG="xmos_v1.13"
+AVS_DEVICE_SDK_TAG="feature/avsrun_spiboot"
 AVS_SCRIPT="setup.sh"
 
 # Default value for XMOS device
@@ -93,9 +94,9 @@ echo "Installing VocalFusion 3510 Raspberry Pi Setup..."
 if $RPI_SETUP_DIR/setup.sh xvf3510; then
 
   echo "Installing Amazon AVS SDK..."
-  wget -O $AVS_SCRIPT https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
-  wget -O pi.sh https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/pi.sh
-  wget -O genConfig.sh https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
+  wget -O $AVS_SCRIPT https://raw.githubusercontent.com/shuchitak/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
+  wget -O pi.sh https://raw.githubusercontent.com/shuchitak/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/pi.sh
+  wget -O genConfig.sh https://raw.githubusercontent.com/shuchitak/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
   chmod +x $AVS_SCRIPT
 
   echo
