@@ -97,4 +97,5 @@ def run_avs(sampleapp_args):
 
 if __name__ == "__main__":
     args = parse_arguments()
+    print("starting spiboot + avs application")
     run_avs(args.sampleapp_args)
