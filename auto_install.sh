@@ -86,7 +86,7 @@ if $RPI_SETUP_DIR/setup.sh xvf3510; then
   wget -O genConfig.sh https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/genConfig.sh
   chmod +x $AVS_SCRIPT
 
-  if ./$AVS_SCRIPT $CONFIG_JSON_FILE $AVS_DEVICE_SDK_TAG -s $DEVICE_SERIAL_NUMBER -d $XMOS_DEVICE; then
+  if ./$AVS_SCRIPT $CONFIG_JSON_FILE $AVS_DEVICE_SDK_TAG -s $DEVICE_SERIAL_NUMBER -x $XMOS_DEVICE; then
     echo "Type 'sudo reboot' below to reboot the Raspberry Pi and complete the AVS setup."
   fi
 fi
