@@ -1,6 +1,6 @@
 # xCORE VocalFusion XVF3510 kit for Amazon AVS on a Raspberry Pi
 
-The XMOS **xCORE VocalFusion XVF3510 kit for Amazon AVS** provides far-field voice capture using the XMOS XVF3500 voice processor.
+The XMOS **xCORE VocalFusion XVF3510 kit for Amazon AVS** provides far-field voice capture using the XMOS XVF3510 voice processor. It also supports the XMOS **xCORE VocalFusion Stereo 4-Mic Kit for AVS** using the XMOS XVF3500 voice processor.
 
 Combined with a Raspberry Pi running the Amazon Alexa Voice Service (AVS) Software Development Kit (SDK), this kit allows you to quickly prototype and evaluate talking with Alexa.
 
@@ -12,7 +12,8 @@ This repository provides a simple-to-use automated script to install the Amazon 
 ## Prerequisites
 You will need:
 
-- **xCORE VocalFusion XVF3510 kit for Amazon AVS**: XK-VF3510-L71
+- Either **xCORE VocalFusion XVF3510 Kit for Amazon AVS**: XK-VF3510-L71
+- or     **xCORE VocalFusion Stereo 4-Mic Kit for Amazon AVS**: XK-VF3500-L33-AVS
 - Raspberry Pi 3
 - Micro-USB power supply (min. 2A)
 - MicroSD card (min. 16GB)
@@ -60,7 +61,15 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    ``` cd vocalfusion_3510_avs_setup```
 
-   ```./auto_install.sh```
+   And then either
+
+   ```./auto_install.sh -x xvf3510```
+
+  for the xCORE VocalFusion XVF3510, or
+
+   ```./auto_install.sh -x xvf3500```
+
+  for the xCORE VocalFusion XVF3500.
 
    Read and accept the AVS Device SDK license agreement.
 
@@ -73,7 +82,11 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 11. If you selected the option to run the Sample App on boot you should now be able to complete the registration by following the steps from 2 onward here:
 https://github.com/alexa/avs-device-sdk/wiki/Raspberry-Pi-Quick-Start-Guide-with-Script#finish-authorization-using-login-with-amazon
 
-12. Now you can execute an AVS command such as "Alexa, what time is it?". The LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
+12. Now you can execute an AVS command such as "Alexa, what time is it?".
+
+On the XMOS **xCORE VocalFusion XVF3510 Kit for Amazon AVS**, the LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
+
+On the XMOS **xCORE VocalFusion Stereo 4-Mic Kit for Amazon AVS**, the LEDs on the development board should reflect the approximate direction from which the microphones are receiving an stimulus.
 
 ## Running the AVS SDK Sample App
 The automated installation script creates a number of aliases which can be used to execute the AVS Device SDK client, or run the unit tests:
