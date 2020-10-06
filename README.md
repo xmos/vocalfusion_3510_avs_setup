@@ -86,7 +86,7 @@ https://github.com/alexa/avs-device-sdk/wiki/Raspberry-Pi-Quick-Start-Guide-with
 
    On the XMOS **xCORE VocalFusion XVF3510 Kit for Amazon AVS**, the LED on the Pi HAT board will change colour when the system hears the "Alexa" keyword, and will then cycle back and forth whilst waiting for a response from the Amazon AVS server.
 
-   On the XMOS **xCORE VocalFusion Stereo 4-Mic Kit for Amazon AVS**, the LEDs on the development board should reflect the approximate direction from which the microphones are receiving an stimulus.
+   On the XMOS **xCORE VocalFusion Stereo 4-Mic Kit for Amazon AVS**, the LEDs on the development board should reflect the approximate direction from which the microphones are receiving a stimulus.
 
 ## Running the AVS SDK Sample App
 The automated installation script creates a number of aliases which can be used to execute the AVS Device SDK client, or run the unit tests:
