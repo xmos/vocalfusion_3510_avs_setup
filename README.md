@@ -60,7 +60,7 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    ``` cd vocalfusion_3510_avs_setup```
 
-   ```./auto_install.sh config.json```
+   ```./auto_install.sh```
 
    Read and accept the AVS Device SDK license agreement.
 
