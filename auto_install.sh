@@ -8,13 +8,26 @@ AVS_DEVICE_SDK_TAG="xmos_v1.20.1"
 AVS_SCRIPT="setup.sh"
 
 # Default value for XMOS device
-XMOS_DEVICE="xvf3510"
+XMOS_DEVICE=
+VALID_XMOS_DEVICES="xvf3100 xvf3500 xvf3510"
+VALID_XMOS_DEVICES_DISPLAY_STRING=
+NUMBER_OF_VALID_DEVICES=$(echo $VALID_XMOS_DEVICES | wc -w)
+i=1
+for d in $VALID_XMOS_DEVICES; do
+  case $i in 
+  1) SEP= ;;
+  $NUMBER_OF_VALID_DEVICES) SEP=" or " ;;
+  *) SEP=", " ;;
+  esac
+  VALID_XMOS_DEVICES_DISPLAY_STRING=$VALID_XMOS_DEVICES_DISPLAY_STRING$SEP$d
+  (( ++i ))
+done
 
 # Default device serial number if nothing is specified
 DEVICE_SERIAL_NUMBER="123456"
 
-show_help() {
-  echo  'Usage: auto_install.sh [OPTIONS]'
+usage() {
+  echo  'usage: auto_install.sh [OPTIONS] DEVICE-TYPE'
   echo  'A JSON config file, config.json, must be present in the current working directory.'
   echo  'The config.json can be downloaded from developer portal and must contain the following:'
   echo  '   "clientId": "<Auth client ID>"'
@@ -22,14 +35,17 @@ show_help() {
   echo  ''
   echo  'Optional parameters'
   echo  '  -s <serial-number>  If nothing is provided, the default device serial number is 123456'
-  echo  '  -x <device-type>    XMOS device to setup: default xvf3510, possible value xvf3500'
   echo  '  -h                  Display this help and exit'
+  echo  ''
+  echo  'Required parameters'
+  echo  '  DEVICE-TYPE         XMOS device to setup: '$VALID_XMOS_DEVICES_DISPLAY_STRING
 }
 
 CONFIG_JSON_FILE="config.json"
 if [ ! -f "$CONFIG_JSON_FILE" ]; then
-    echo "Config json file not found!"
-    show_help
+    echo "error: config JSON file not found."
+    echo
+    usage
     exit 1
 fi
 
@@ -39,26 +55,37 @@ while getopts "$OPTIONS" opt ; do
         s )
             DEVICE_SERIAL_NUMBER="$OPTARG"
             ;;
-        x )
-            XMOS_DEVICE="$OPTARG"
-            ;;
         h )
-            show_help
+            usage
             exit 1
             ;;
     esac
 done
 
-# validate XMOS_DEVICE value
-case ${XMOS_DEVICE:6} in
-    00|10 ) DEVICE_VALID=1 ;;
-    * )     DEVICE_VALID=0 ;;
+shift $(( OPTIND - 1 ))
 
-esac
-if [[ $DEVICE_VALID == 0 || "${XMOS_DEVICE:1:5}" != "xvf35" ]]; then
-    echo "error: device '$XMOS_DEVICE' is unknown."
-    show_help
-    exit 1
+if [[ $# -lt 1 ]]; then
+  echo "error: no device type specified."
+  echo
+  usage
+  exit 1
+fi
+
+XMOS_DEVICE=$1
+
+# validate XMOS_DEVICE value
+DEVICE_IS_VALID=
+for d in $VALID_XMOS_DEVICES; do
+  if [[ $d = $XMOS_DEVICE ]]; then
+    DEVICE_IS_VALID=y
+    break
+  fi
+done
+if [[ -z "$DEVICE_IS_VALID" ]]; then
+  echo "error: $XMOS_DEVICE is not a valid device type."
+  echo
+  usage
+  exit 1
 fi
 
 # Exit if chromium browser is open
