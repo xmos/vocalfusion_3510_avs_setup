@@ -63,13 +63,17 @@ The **Getting Started Guide** details setup steps up until this point. What foll
 
    And then either
 
-   ```./auto_install.sh -x xvf3510```
+   ```./auto_install.sh xvf3510```
 
-   for the xCORE VocalFusion XVF3510, or
+   for the xCORE VocalFusion XVF3510,
 
-   ```./auto_install.sh -x xvf3500```
+   ```./auto_install.sh xvf3500```
 
-   for the xCORE VocalFusion XVF3500.
+   for the xCORE VocalFusion XVF3500, or
+
+   ```./auto_install.sh xvf3100```
+
+   for the xCORE VocalFusion XVF3100.
 
    Read and accept the AVS Device SDK license agreement.
 
