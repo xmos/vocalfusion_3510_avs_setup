@@ -7,19 +7,19 @@ RPI_SETUP_TAG="v2.1.0"
 AVS_DEVICE_SDK_TAG="xmos_v1.20.1"
 AVS_SCRIPT="setup.sh"
 
-# Default value for XMOS device
-XMOS_DEVICE=
+# Valid values for XMOS device
 VALID_XMOS_DEVICES="xvf3100 xvf3500 xvf3510"
+XMOS_DEVICE=
 VALID_XMOS_DEVICES_DISPLAY_STRING=
 NUMBER_OF_VALID_DEVICES=$(echo $VALID_XMOS_DEVICES | wc -w)
 i=1
+SEP=
 for d in $VALID_XMOS_DEVICES; do
-  case $i in 
-  1) SEP= ;;
-  $NUMBER_OF_VALID_DEVICES) SEP=" or " ;;
-  *) SEP=", " ;;
-  esac
+  if [[ $i -eq $NUMBER_OF_VALID_DEVICES ]]; then
+    SEP=" or "
+  fi
   VALID_XMOS_DEVICES_DISPLAY_STRING=$VALID_XMOS_DEVICES_DISPLAY_STRING$SEP$d
+  SEP=", "
   (( ++i ))
 done
 
