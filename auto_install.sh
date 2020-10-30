@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 pushd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null
 SETUP_DIR="$( pwd )"
-RPI_SETUP_DIR=$SETUP_DIR/vocalfusion-rpi-setup
+RPI_SETUP_REPO=vocalfusion-rpi-setup
+RPI_SETUP_DIR=$SETUP_DIR/$RPI_SETUP_REPO
+RPI_SETUP_SCRIPT=$RPI_SETUP_DIR/setup.sh
 
 RPI_SETUP_TAG="v3.0.0"
 AVS_DEVICE_SDK_TAG="xmos_v1.20.1"
@@ -107,11 +109,11 @@ mkdir $SDK_DIR
 if [ -d $RPI_SETUP_DIR ]; then
   rm -rf $RPI_SETUP_DIR
 fi
-git clone -b $RPI_SETUP_TAG git://github.com/xmos/vocalfusion-rpi-setup.git
+git clone -b $RPI_SETUP_TAG git://github.com/xmos/$RPI_SETUP_REPO.git
 
 # Execute (rather than source) the setup scripts
 echo "Installing VocalFusion ${XMOS_DEVICE:3} Raspberry Pi Setup..."
-if $RPI_SETUP_DIR/setup.sh $XMOS_DEVICE; then
+if $RPI_SETUP_SCRIPT $XMOS_DEVICE; then
 
   echo "Installing Amazon AVS SDK..."
   wget -O $AVS_SCRIPT https://raw.githubusercontent.com/xmos/avs-device-sdk/$AVS_DEVICE_SDK_TAG/tools/Install/$AVS_SCRIPT
