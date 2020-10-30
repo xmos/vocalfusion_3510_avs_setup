@@ -17,15 +17,18 @@ XMOS_DEVICE=
 DEVICE_SERIAL_NUMBER="123456"
 
 usage() {
-  echo  'usage: auto_install.sh [OPTIONS] [DEVICE-TYPE]'
-  echo  'A JSON config file, config.json, must be present in the current working directory.'
-  echo  'The config.json can be downloaded from developer portal and must contain the following:'
-  echo  '   "clientId": "<Auth client ID>"'
-  echo  '   "productId": "<your product name for device>"'
-  echo  ''
-  echo  'Optional parameters'
-  echo  '  -s <serial-number>  If nothing is provided, the default device serial number is 123456'
-  echo  '  -h                  Display this help and exit'
+  echo 'usage: auto_install.sh [OPTIONS] [DEVICE-TYPE]'
+  echo ''
+  echo 'A JSON config file, config.json, must be present in the current working'
+  echo 'directory. The config.json can be downloaded from developer portal and must'
+  echo 'contain the following:'
+  echo '   "clientId": "<Auth client ID>"'
+  echo '   "productId": "<your product name for device>"'
+  echo ''
+  echo 'Optional parameters:'
+  echo '  -s <serial-number>  If nothing is provided, the default device serial number'
+  echo '                      is 123456'
+  echo '  -h                  Display this help and exit'
   local VALID_XMOS_DEVICES_DISPLAY_STRING=
   local NUMBER_OF_VALID_DEVICES=$(echo $VALID_XMOS_DEVICES | wc -w)
   local i=1
