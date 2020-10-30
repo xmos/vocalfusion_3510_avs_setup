@@ -12,24 +12,12 @@ AVS_SCRIPT="setup.sh"
 # Valid values for XMOS device
 VALID_XMOS_DEVICES="xvf3100 xvf3500 xvf3510"
 XMOS_DEVICE=
-VALID_XMOS_DEVICES_DISPLAY_STRING=
-NUMBER_OF_VALID_DEVICES=$(echo $VALID_XMOS_DEVICES | wc -w)
-i=1
-SEP=
-for d in $VALID_XMOS_DEVICES; do
-  if [[ $i -eq $NUMBER_OF_VALID_DEVICES ]]; then
-    SEP=" or "
-  fi
-  VALID_XMOS_DEVICES_DISPLAY_STRING=$VALID_XMOS_DEVICES_DISPLAY_STRING$SEP$d
-  SEP=", "
-  (( ++i ))
-done
 
 # Default device serial number if nothing is specified
 DEVICE_SERIAL_NUMBER="123456"
 
 usage() {
-  echo  'usage: auto_install.sh [OPTIONS] DEVICE-TYPE'
+  echo  'usage: auto_install.sh [OPTIONS] [DEVICE-TYPE]'
   echo  'A JSON config file, config.json, must be present in the current working directory.'
   echo  'The config.json can be downloaded from developer portal and must contain the following:'
   echo  '   "clientId": "<Auth client ID>"'
@@ -38,8 +26,18 @@ usage() {
   echo  'Optional parameters'
   echo  '  -s <serial-number>  If nothing is provided, the default device serial number is 123456'
   echo  '  -h                  Display this help and exit'
-  echo  ''
-  echo  'Required parameters'
+  local VALID_XMOS_DEVICES_DISPLAY_STRING=
+  local NUMBER_OF_VALID_DEVICES=$(echo $VALID_XMOS_DEVICES | wc -w)
+  local i=1
+  local SEP=
+  for d in $VALID_XMOS_DEVICES; do
+    if [[ $i -eq $NUMBER_OF_VALID_DEVICES ]]; then
+      SEP=" or "
+    fi
+    VALID_XMOS_DEVICES_DISPLAY_STRING=$VALID_XMOS_DEVICES_DISPLAY_STRING$SEP$d
+    SEP=", "
+    (( ++i ))
+  done
   echo  '  DEVICE-TYPE         XMOS device to setup: '$VALID_XMOS_DEVICES_DISPLAY_STRING
 }
 
@@ -66,24 +64,30 @@ done
 
 shift $(( OPTIND - 1 ))
 
-if [[ $# -lt 1 ]]; then
-  echo "error: no device type specified."
-  echo
-  usage
-  exit 1
+if [[ $# -ge 1 ]]; then
+  XMOS_DEVICE=$1
+else
+  echo No device specified.
+  PS3="Type the number corresponding to one of the above devices: "
+  select XMOS_DEVICE in $VALID_XMOS_DEVICES; do
+    if [[ -n "$XMOS_DEVICE" ]]; then
+      break;
+    fi
+  done
 fi
 
-XMOS_DEVICE=$1
-
 # validate XMOS_DEVICE value
-DEVICE_IS_VALID=
-for d in $VALID_XMOS_DEVICES; do
-  if [[ $d = $XMOS_DEVICE ]]; then
-    DEVICE_IS_VALID=y
-    break
-  fi
-done
-if [[ -z "$DEVICE_IS_VALID" ]]; then
+validate_device() {
+  local DEV=$1
+  shift
+  for d in $*; do
+    if [[ "$DEV" = "$d" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+if ! validate_device $XMOS_DEVICE $VALID_XMOS_DEVICES; then
   echo "error: $XMOS_DEVICE is not a valid device type."
   echo
   usage
