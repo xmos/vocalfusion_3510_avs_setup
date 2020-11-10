@@ -50,12 +50,14 @@ while getopts "$OPTIONS" opt ; do
 done
 
 # validate XMOS_DEVICE value
-case ${XMOS_DEVICE:6} in
+echo ${XMOS_DEVICE:5}
+case ${XMOS_DEVICE:5} in
     00|10 ) DEVICE_VALID=1 ;;
     * )     DEVICE_VALID=0 ;;
 
 esac
-if [[ $DEVICE_VALID == 0 || "${XMOS_DEVICE:1:5}" != "xvf35" ]]; then
+echo "${XMOS_DEVICE:0:5}"
+if [[ $DEVICE_VALID == 0 || "${XMOS_DEVICE:0:5}" != "xvf35" ]]; then
     echo "error: device '$XMOS_DEVICE' is unknown."
     show_help
     exit 1
